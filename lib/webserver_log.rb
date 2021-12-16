@@ -50,10 +50,10 @@ class WebServerLog
     puts '| # | ' + title.rjust(15) 
     puts '-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-'
     
-    @test = (title == "Page Views" ? 'visits' : 'unique views')
+    @view_title = (title == "Page Views" ? 'visits' : 'unique views')
 
     logs.each_with_index do |(page, views), index|
-      puts "| #{index + 1} | #{page.rjust(15)} has #{views}" + " " + @test
+      puts "| #{index + 1} | #{page.rjust(15)} has #{views}" + " " + @view_title
     end
     puts '---------------------------------------------'
   end
