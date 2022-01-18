@@ -1,0 +1,35 @@
+AllCops:
+  Excludes:
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+  SuggestExtensions: false
+
+Style/Documentation:
+  Enabled: false
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 200
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/BlockLength:
+  Max: 30
+
+Metrics/CyclomaticComplexity:
+  Max: 30
+
+Metrics/PerceivedComplexity:
+  Max: 30
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
