@@ -2,30 +2,34 @@ require_relative 'log_base'
 
 class WebServerLog < LogBase
   def generate_logs
-    return p "There is no file named '#{@logfile_path}'." unless valid_file_path?(@logfile_path)
+    return p "There is no file named '#{logfile_path}'." unless valid_file_path?(logfile_path)
 
-    File.open(@logfile_path).each do |line|
+    File.open(logfile_path).each do |line|
       url, ip_address = line.split
       log_entries[url] << ip_address
     end
   end
 
   def most_page_views
-    return p 'There is no logs in the file' unless log_entries.count.positive?
-
-    most_page_logs = page_view_count(log_entries, false)
-    show_output(most_page_logs, 'Page Views')
+    page_logs(log_entries, false)
   end
 
   def unique_page_view
-    unique_page_logs = page_view_count(log_entries, true)
-    show_output(unique_page_logs, 'Unique Views')
+    page_logs(log_entries, true)
   end
 
   private
 
   def valid_file_path?(path)
     File.exist? path
+  end
+
+  def page_logs(log_entries, is_unique)
+    return p 'There is no logs in the file' unless log_entries.count.positive?
+
+    page_logs = page_view_count(log_entries, is_unique)
+    title = is_unique ? 'Unique Views' : 'Page Views'
+    show_output(page_logs, title)
   end
 
   def page_view_count(logs, is_unique)
