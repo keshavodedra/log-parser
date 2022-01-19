@@ -11,11 +11,11 @@ class WebServerLog < LogBase
   end
 
   def most_page_views
-    page_logs(log_entries, false)
+    page_logs(false)
   end
 
   def unique_page_view
-    page_logs(log_entries, true)
+    page_logs(true)
   end
 
   private
@@ -24,7 +24,7 @@ class WebServerLog < LogBase
     File.exist? path
   end
 
-  def page_logs(log_entries, is_unique)
+  def page_logs(is_unique)
     return p 'There is no logs in the file' unless log_entries.count.positive?
 
     page_logs = page_view_count(log_entries, is_unique)
